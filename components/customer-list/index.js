@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 
-// function to dynamically display alert message which vanishes after 3 secs.
-function showAlert(message, className) {
-  const div = document.createElement("div");
-  div.className = `alert alert-${className}`;
-  div.appendChild(document.createTextNode(message));
-  const container = document.querySelector(".container");
-  const form = document.querySelector("#book-form");
-  container.insertBefore(div, form);
-
-  // Vanish in 3 seconds
-  setTimeout(() => document.querySelector(".alert").remove(), 3000);
-}
-
 // Function to add new customers to the list
 function CustomerList() {
   const [customers, setCustomers] = useState([]);
   const [customer, setCustomer] = useState("");
   const saveditems = JSON.parse(localStorage.getItem("customer"));
   const [items, setItems] = useState(saveditems || []);
+
+  // function to dynamically display alert message which vanishes after 3 secs.
+  const showAlert = (message, className) => {
+    const div = document.createElement("div");
+    div.className = `alert alert-${className}`;
+    div.appendChild(document.createTextNode(message));
+    const container = document.querySelector(".container");
+    const form = document.querySelector("#book-form");
+    container.insertBefore(div, form);
+    // Vanish in 3 seconds
+    setTimeout(() => document.querySelector(".alert").remove(), 3000);
+  };
 
   const addCustomer = () => {
     if (customer.trim() === "") {
@@ -28,16 +27,16 @@ function CustomerList() {
     }
 
     setCustomers([...customers, customer]);
+    console.log("Array -->", customers);
     setCustomer("");
     setItems(localStorage.setItem("customer", JSON.stringify(customer)));
-    console.log("Array -->", customers);
   };
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("customer"));
-    //console.log("data", items);
+    // console.log("data", items);
     if (items) {
-      setCustomers([...customers, items]);
+      setCustomers([...items]);
     }
   }, [items]);
 
