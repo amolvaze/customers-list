@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 
 // function to dynamically display alert message which vanishes after 3 secs.
@@ -18,6 +18,9 @@ function showAlert(message, className) {
 function CustomerList() {
   const [customers, setCustomers] = useState([]);
   const [customer, setCustomer] = useState("");
+  const saveditems = JSON.parse(localStorage.getItem("customer"));
+  const [items, setItems] = useState(saveditems || []);
+
   const addCustomer = () => {
     if (customer.trim() === "") {
       showAlert("Please enter input. It cannot be blank", "danger");
@@ -26,7 +29,17 @@ function CustomerList() {
 
     setCustomers([...customers, customer]);
     setCustomer("");
+    // setItems(localStorage.setItem("customer", JSON.stringify(customer)));
+    console.log("Array -->", customers);
   };
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("customer"));
+    //console.log("data", items);
+    if (items) {
+      setCustomers([...customers, items]);
+    }
+  }, [items]);
 
   return (
     <div className="mt-75 layout-column justify-content-center align-items-center">
