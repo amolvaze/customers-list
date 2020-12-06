@@ -36,7 +36,7 @@ function CustomerList() {
     const items = JSON.parse(localStorage.getItem("customer"));
     // console.log("data", items);
     if (items) {
-      setCustomers([...items]);
+       setCustomers([items]);
     }
   }, [items]);
 
