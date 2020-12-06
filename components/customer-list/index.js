@@ -29,7 +29,7 @@ function CustomerList() {
 
     setCustomers([...customers, customer]);
     setCustomer("");
-    // setItems(localStorage.setItem("customer", JSON.stringify(customer)));
+    setItems(localStorage.setItem("customer", JSON.stringify(customer)));
     console.log("Array -->", customers);
   };
 
