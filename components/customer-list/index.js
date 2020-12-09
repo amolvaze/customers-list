@@ -5,8 +5,6 @@ import "./index.css";
 function CustomerList() {
   const [customers, setCustomers] = useState([]);
   const [customer, setCustomer] = useState("");
-  const saveditems = JSON.parse(localStorage.getItem("customer"));
-  const [items, setItems] = useState(saveditems || []);
 
   // function to dynamically display alert message which vanishes after 3 secs.
   const showAlert = (message, className) => {
@@ -27,18 +25,17 @@ function CustomerList() {
     }
 
     setCustomers([...customers, customer]);
-    console.log("Array -->", customers);
     setCustomer("");
-    setItems(localStorage.setItem("customer", JSON.stringify(customer)));
+    localStorage.setItem("customer", JSON.stringify([...customers, customer]));
   };
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("customer"));
-    // console.log("data", items);
+    console.log("Fetched data", items);
     if (items) {
-       setCustomers([items]);
+      setCustomers(items);
     }
-  }, [items]);
+  }, []);
 
   return (
     <div className="mt-75 layout-column justify-content-center align-items-center">
