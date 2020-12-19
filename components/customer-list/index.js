@@ -18,6 +18,15 @@ function CustomerList() {
     setTimeout(() => document.querySelector(".alert").remove(), 3000);
   };
 
+  const deleteItem = (index) => {
+    // console.log("clicked " + index);
+    const newCustomer = [...customers];
+    newCustomer.splice(index, 1);
+    setCustomers(newCustomer);
+    // code to remove item from the local storage and update the state
+    localStorage.setItem("customer", JSON.stringify(newCustomer));
+  };
+
   const addCustomer = () => {
     if (customer.trim() === "") {
       showAlert("Please enter input. It cannot be blank", "danger");
@@ -31,7 +40,6 @@ function CustomerList() {
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("customer"));
-    console.log("Fetched data", items);
     if (items) {
       setCustomers(items);
     }
@@ -70,6 +78,7 @@ function CustomerList() {
               className="slide-up-fade-in"
               data-testid={"list-item" + index}
               key={"list-item" + index}
+              onClick={deleteItem.bind(this, index)}
             >
               {customer}
             </li>
