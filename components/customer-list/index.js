@@ -1,22 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
+import Alert from "./Alert";
 
 // Function to add new customers to the list
 function CustomerList() {
   const [customers, setCustomers] = useState([]);
   const [customer, setCustomer] = useState("");
-
-  // function to dynamically display alert message which vanishes after 3 secs.
-  const showAlert = (message, className) => {
-    const div = document.createElement("div");
-    div.className = `alert alert-${className}`;
-    div.appendChild(document.createTextNode(message));
-    const container = document.querySelector(".container");
-    const form = document.querySelector("#book-form");
-    container.insertBefore(div, form);
-    // Vanish in 3 seconds
-    setTimeout(() => document.querySelector(".alert").remove(), 3000);
-  };
 
   const deleteItem = (index) => {
     const newCustomer = [...customers];
@@ -28,7 +17,7 @@ function CustomerList() {
 
   const addCustomer = () => {
     if (customer.trim() === "") {
-      showAlert("Please enter input. It cannot be blank", "danger");
+      Alert("Please enter input. It cannot be blank", "danger");
       return;
     }
 
