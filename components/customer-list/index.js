@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Alert from "./Alert";
 
 // Function to add new customers to the list
-function CustomerList() {
+const CustomerList = () => {
   const [customers, setCustomers] = useState([]);
   const [customer, setCustomer] = useState("");
 
@@ -76,6 +76,6 @@ function CustomerList() {
       )}
     </div>
   );
-}
+};
 
 export default CustomerList;
