@@ -2,6 +2,22 @@
  background-color: rgb(214, 238, 216)
 }
 
+*, *::after, *::before {
+  box-sizing: border-box;
+  font-family: Gotham Rounded, sans-serif;
+}
+
 body{
-    background: rgb(214, 238, 216)
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, hsl(315, 65%, 84%), hsl(305, 89%, 36%));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
 }
