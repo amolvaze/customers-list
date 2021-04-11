@@ -19,7 +19,6 @@ function CustomerList() {
   };
 
   const deleteItem = (index) => {
-    // console.log("clicked " + index);
     const newCustomer = [...customers];
     newCustomer.splice(index, 1);
     setCustomers(newCustomer);
