@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./index.css";
 import Alert from "./Alert";
 
 // Function to add new customers to the list
